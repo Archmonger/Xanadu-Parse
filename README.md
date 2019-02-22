@@ -1,2 +1,2 @@
-# Xanadu-Parse
-A.I. based file parsing algorithm
+# Xanadu Parse
+A.I. based file name parsing algorithm for media content
