@@ -2,7 +2,7 @@ import requests
 import feedparser
 
 # Sending an API request to xanadu.cf
-parameters = {"apikey": "7o0tagxqeryipw4oqbbn1je2az11qnph", "q": input("Search: ")}
+parameters = {"apikey": "7o0tagxqeryipw4oqbbn1je2az11qnph", "cat": "5000,5030,5040,5060,5070", "q": input("Search: ")}
 url = "https://xanadu.cf/api/v2.0/indexers/all/results/torznab/api"
 response = requests.get(url, parameters)
 search_dict = {}
