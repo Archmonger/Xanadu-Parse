@@ -21,7 +21,17 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Sample_Query.py" />
     <Compile Include="Xanadu_Parse.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="main.cpp" />
+    <Content Include="mainwindow.cpp" />
+    <Content Include="mainwindow.h" />
+    <Content Include="mainwindow.ui" />
+    <Content Include="results.txt" />
+    <Content Include="Xanadu.pro" />
+    <Content Include="Xanadu.pro.user" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
