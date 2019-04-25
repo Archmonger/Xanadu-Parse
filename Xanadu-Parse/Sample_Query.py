@@ -8,12 +8,8 @@ url = "https://xanadu.cf/api/v2.0/indexers/all/results/torznab/api"
 response = requests.get(url, parameters)
 search_dict = {}
 
-if response.status_code == 200:
-    # Parsing the contents of the request (RSS feed) into human-readable format using feedparser
-    rss = feedparser.parse(response.content)
-    for post in rss.entries:
-        title = post.title;
-        if (title.count(' ') <= 1):
+def standardize_title(title):
+    if (title.count(' ') <= 1):
             # Standardize periods to spaces
             if (title.count('.') > 0 and title.count('.') > title.count('_')): 
                 a = re.compile(r"\w\.\.") # abc..  ->  abc .
@@ -32,8 +28,15 @@ if response.status_code == 200:
             # Standardize underscores to spaces
             elif (title.count('_') > 0): 
                 title = title.replace("_", " ")
-            
-            search_dict[title] = post.comments
+
+    return title;
+
+if response.status_code == 200:
+    # Parsing the contents of the request (RSS feed) into human-readable format using feedparser
+    rss = feedparser.parse(response.content)
+    for post in rss.entries:
+        title = standardize_title(post.title)
+        search_dict[title] = post.comments
 
     # Print all titles
     for title in search_dict:
