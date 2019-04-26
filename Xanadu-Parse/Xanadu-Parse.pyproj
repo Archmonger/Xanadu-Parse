@@ -22,6 +22,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Standardize.py" />
     <Compile Include="Sample_Query.py" />
     <Compile Include="Xanadu_Parse.py" />
   </ItemGroup>
