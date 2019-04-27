@@ -17,12 +17,13 @@ def main():
             rss = feedparser.parse(response.content)
             for post in rss.entries:
                 title = standardize_title(post.title)
-            
-                if title is not None:
+                #title = post.title
+
+                if title is not None and title not in search_dict:
                     search_dict[title] = post.comments
 
             # Print all titles
-            for title in search_dict:
+            for title, link in search_dict.items():
                 print(title)
                 
         else:
