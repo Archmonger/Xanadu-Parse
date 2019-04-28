@@ -1,6 +1,14 @@
 import re
 import sys
 
+def isEnglish(s):
+    try:
+        s.encode(encoding='utf-8').decode('ascii')
+    except UnicodeDecodeError:
+        return False
+    else:
+        return True
+
 def standardize_title(title):
     if (title.count(' ') <= 1):
         # Standardize periods to spaces
@@ -25,7 +33,10 @@ def standardize_title(title):
     for match in d.finditer(title):
         title = title[:match.start()+1] + "." + title[match.start()+2:]
 
-    return title;
+    if isEnglish(title):
+        return title
+    else:
+        return None
 
 def main():
     if (len(sys.argv) > 2):
