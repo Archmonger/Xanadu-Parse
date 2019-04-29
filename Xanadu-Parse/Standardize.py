@@ -1,28 +1,42 @@
 import re
 import sys
 
+def isEnglish(s):
+    try:
+        s.encode(encoding='utf-8').decode('ascii')
+    except UnicodeDecodeError:
+        return False
+    else:
+        return True
+
 def standardize_title(title):
     if (title.count(' ') <= 1):
-            # Standardize periods to spaces
-            if (title.count('.') > 0 and title.count('.') > title.count('_')): 
-                a = re.compile(r"\w\.\.") # abc..  ->  abc .
-                b = re.compile(r"\.\.\w") # ..abc  ->  . abc
-                c = re.compile(r"\w\.\w") # abc.abc  ->  abc abc
-                d = re.compile(r" (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv)$") #  mp4 -> .mp4
-                for match in a.finditer(title):
-                    title = title[:match.start()+1] + " " + title[match.start()+2:]
-                for match in b.finditer(title):
-                    title = title[:match.start()+1] + " " + title[match.start()+2:]
-                for match in c.finditer(title):
-                    title = title[:match.start()+1] + " " + title[match.start()+2:]
-                for match in d.finditer(title):
-                    title = title[:match.start()] + "." + title[match.start()+1:]
+        # Standardize periods to spaces
+        if (title.count('.') > 1 and title.count('.') > title.count('_')): 
+            title = title.replace(".", " ")
 
-            # Standardize underscores to spaces
-            elif (title.count('_') > 0): 
-                title = title.replace("_", " ")
+        # Standardize underscores to spaces
+        elif (title.count('_') > 0): 
+            title = title.replace("_", " ")
 
-    return title;
+    #Minor revisions to filename
+    a = re.compile(r"\s*$") # remove trailing whitespace
+    b = re.compile(r"\S \(Torrent\) - \S") # remove " (Torrent) - Uploader"
+    c = re.compile(r" torrent$") # remove " torrent"    
+    d = re.compile(r"\S (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv)$") # " mp4" -> .mp4
+    for match in a.finditer(title):
+        title = title[:match.start()]
+    for match in b.finditer(title):
+        title = title[:match.start()+1]
+    for match in c.finditer(title):
+        title = title[:match.start()]
+    for match in d.finditer(title):
+        title = title[:match.start()+1] + "." + title[match.start()+2:]
+
+    if isEnglish(title):
+        return title
+    else:
+        return None
 
 def main():
     if (len(sys.argv) > 2):
