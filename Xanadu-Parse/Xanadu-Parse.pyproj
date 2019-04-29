@@ -31,7 +31,6 @@
     <Content Include="mainwindow.cpp" />
     <Content Include="mainwindow.h" />
     <Content Include="mainwindow.ui" />
-    <Content Include="results.txt" />
     <Content Include="Xanadu.pro" />
     <Content Include="Xanadu.pro.user" />
   </ItemGroup>
