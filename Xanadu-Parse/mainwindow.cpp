@@ -54,11 +54,11 @@ void MainWindow::on_searchButton_clicked()
         // IN - check radio buttons
         QString movietv;
         if(ui->tvButton->isChecked())
-            movietv = "tv";
+            movietv = "s";
         else
-            movietv = "movie";
+            movietv = "m";
         // STORE - command to be run with grabbed text
-        QString cmd_qt = QString("py \".\\..\\..\\Xanadu-Parse\\Sample_Query.py\" %1 %2").arg(movietv, test);
+        QString cmd_qt = QString("py SearchQuery.py " + movietv + " \"" + test + "\"");
         // OUT - test output for command
         qInfo(qPrintable(cmd_qt));
         // RUN - runs command
