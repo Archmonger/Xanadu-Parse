@@ -58,7 +58,7 @@ void MainWindow::on_searchButton_clicked()
         else
             movietv = "m";
         // STORE - command to be run with grabbed text
-        QString cmd_qt = QString("py SearchQuery.py " + movietv + " \"" + test + "\"");
+        QString cmd_qt = QString("python SearchQuery.py " + movietv + " \"" + test + "\"");
         // OUT - test output for command
         qInfo(qPrintable(cmd_qt));
         // RUN - runs command
