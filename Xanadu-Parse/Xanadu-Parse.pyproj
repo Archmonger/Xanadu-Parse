@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5ebba34f-2a4e-4ab1-9a1a-2881aaf6c9fd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Sample_Query.py</StartupFile>
+    <StartupFile>SearchQuery.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,8 +22,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="SearchQuery.py" />
     <Compile Include="Standardize.py" />
-    <Compile Include="Sample_Query.py" />
     <Compile Include="Xanadu_Parse.py" />
   </ItemGroup>
   <ItemGroup>
