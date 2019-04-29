@@ -8,6 +8,7 @@ def contentSearch(contentType):
     search_dict = {}
 
     # Set movie/series categories
+    searchQuery = input("Search Query: ")
     if contentType == 'm':
         cat = "2000,2020,2040,2050,2070"
     elif contentType == 's':
@@ -21,7 +22,7 @@ def contentSearch(contentType):
 
     # Creating an API request to xanadu.cf
     url = "https://xanadu.cf/api/v2.0/indexers/" + indexer + "/results/torznab/api"
-    parameters = {"apikey": "7o0tagxqeryipw4oqbbn1je2az11qnph", "cat": cat, "q": input("Search Query: ")}
+    parameters = {"apikey": "7o0tagxqeryipw4oqbbn1je2az11qnph", "cat": cat, "q": searchQuery}
     response = requests.get(url, parameters)
 
     if response.status_code == 200:
@@ -29,13 +30,16 @@ def contentSearch(contentType):
         rss = feedparser.parse(response.content)
         for post in rss.entries:
             title = standardize_title(post.title)
-
             if title is not None and title not in search_dict:
-                search_dict[title] = post.comments
+                search_dict[title] = post.title
 
         # Print all titles
-        for title, link in search_dict.items():
-            print(title)
+        results_file = open("results.txt","w+")
+        for std_title, title in search_dict.items():
+            print(std_title)
+            print(link)
+            print(std_title, file=results_file)
+            print(tile, file=results_file)
 
     else:
         print("Connection Failed!")
