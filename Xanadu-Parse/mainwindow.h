@@ -23,7 +23,7 @@ public:
 private slots:
     void on_searchButton_clicked();
 
-    void on_extraButton_clicked();
+    void on_saveButton_clicked();
 
 private:
     Ui::MainWindow *ui;
