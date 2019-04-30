@@ -35,8 +35,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderItem(18, new QTableWidgetItem("Revision Number"));
     ui->tableWidget->setHorizontalHeaderItem(19, new QTableWidgetItem("File Type"));
     ui->tableWidget->setHorizontalHeaderItem(20, new QTableWidgetItem("Checksum"));
-
+    //makes table widget items editable after one click
     ui->tableWidget->setEditTriggers(QAbstractItemView::AllEditTriggers);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -50,7 +52,7 @@ void MainWindow::on_searchButton_clicked()
     ui->errorLabel->setText("");
     QString test = ui->textEdit->toPlainText();
     qInfo(qPrintable(test));
-    if(!test.trimmed().isEmpty() && (ui->tvButton->isChecked() || ui->moviesButton->isChecked()))
+    if(ui->tvButton->isChecked() || ui->moviesButton->isChecked())
     {
         // IN - check radio buttons
         QString movietv;

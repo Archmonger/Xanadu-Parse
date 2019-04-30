@@ -7,6 +7,7 @@
 #include <QTextEdit>
 #include <QDebug>
 #include <QFile>
+#include <QLineEdit>
 
 namespace Ui {
 class MainWindow;
