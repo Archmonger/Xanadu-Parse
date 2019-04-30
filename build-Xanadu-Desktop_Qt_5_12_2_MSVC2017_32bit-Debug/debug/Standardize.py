@@ -35,8 +35,6 @@ def standardize_title(title):
         title = title[:match.start()]
     for match in d.finditer(title):
         title = title[:match.start()+1] + "." + title[match.start()+2:]
-    while title.find("  "): # Remove excessive spacing
-        title.replace("  ", " ")
 
     if isEnglish(title):
         return title
