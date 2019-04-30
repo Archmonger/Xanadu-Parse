@@ -159,4 +159,5 @@ void MainWindow::on_saveButton_clicked()
         // OUT - outputs command result
         qInfo( qPrintable( QString::number(q)));
     }
+    ui->tableWidget->setRowCount(0);
 }
