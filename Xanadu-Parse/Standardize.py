@@ -22,10 +22,10 @@ def standardize_title(title):
         elif (title.count('_') > 0): 
             title = title.replace("_", " ")
 
-    #Minor revisions to filename
-    a = re.compile(r"\s*$") # remove trailing whitespace
-    b = re.compile(r"\S \(Torrent\) - \S") # remove " (Torrent) - Uploader"
-    c = re.compile(r" torrent$") # remove " torrent"        
+    # Clean up the file name
+    a = re.compile(r"\s*$") # rRmove trailing whitespace
+    b = re.compile(r"\S \(Torrent\) - \S") # Remove " (Torrent) - Uploader"
+    c = re.compile(r" torrent$") # Remove " torrent"        
     d = re.compile(r"\S (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv)$") # " mp4" -> .mp4
     for match in a.finditer(title):
         title = title[:match.start()]
@@ -35,6 +35,8 @@ def standardize_title(title):
         title = title[:match.start()]
     for match in d.finditer(title):
         title = title[:match.start()+1] + "." + title[match.start()+2:]
+
+    title = title.replace("\"","") # Remove quotation marks
 
     if isEnglish(title):
         return title
