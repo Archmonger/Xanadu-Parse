@@ -127,8 +127,19 @@ void MainWindow::on_saveButton_clicked()
                     {
 
                         QTableWidgetItem* node2 = ui->tableWidget->item(i, j);
+                        //IF - node is not empty
                         if(node2)
-                            stream << node2->text();
+                        {
+                            QString str = node2->text();
+                            if(str.contains(" "))
+                            {
+                                //replace spaces with |
+                                str.replace(" ", "|");
+                                str.push_back("\"");
+                                str.push_front("\"");
+                            }
+                            stream << str;
+                        }
                         if(j < cc-1)
                              stream << "|";
                         else
