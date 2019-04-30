@@ -27,7 +27,7 @@ def contentSearch():
     else:
         if sys.argv[1] == 'm':
             cat = "2000,2020,2040,2050,2070"
-        elif  sys.argv[2] == 's':
+        elif sys.argv[1] == 's':
             cat = "5000,5030,5040,5060,5070"
         indexer = "all"
         searchQuery = sys.argv[2]
