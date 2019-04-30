@@ -2,6 +2,7 @@ import requests
 import feedparser
 import re
 import sys
+import csv
 from Standardize import standardize_title
 
 
@@ -62,3 +63,8 @@ def main():
 
 if (__name__ == "__main__"):
     main()
+
+import csv
+csv_reader = csv.DictReader(open('AITestFile.csv'), delimiter='|', quotechar='"')
+for row in csv_reader:
+    print(row['Title'].split("|"))
