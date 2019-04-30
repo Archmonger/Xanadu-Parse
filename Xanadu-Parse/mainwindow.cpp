@@ -148,7 +148,9 @@ void MainWindow::on_saveButton_clicked()
                         if(j < cc-1)
                              stream << "|";
                         else
-                            stream << "\n";
+                            //another | is added at the end of each line
+                            //this is needed for creating the Data Validated section in the csv
+                            stream << "|\n";
                     }
                 }
             }
