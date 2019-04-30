@@ -2,6 +2,7 @@ import requests
 import feedparser
 import re
 import sys
+import csv
 from Standardize import standardize_title
 
 
@@ -40,9 +41,15 @@ def contentSearch():
     if response.status_code == 200:
         # Parsing the contents of the request (RSS feed) into human-readable format using feedparser
         rss = feedparser.parse(response.content)
+
+        # Ensure no duplication
+        csv_reader = csv.DictReader(open('AITestFile.csv'), delimiter='|', quotechar='"')  
+        parse_history = []
+        for row in csv_reader:
+            parse_history.append(row['Altered File Name'])
         for post in rss.entries:
             title = standardize_title(post.title)
-            if title is not None and title not in search_dict:
+            if title is not None and title not in search_dict and title not in parse_history:
                 search_dict[title] = post.title
 
         # Print all titles
