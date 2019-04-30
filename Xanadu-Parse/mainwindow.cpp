@@ -78,7 +78,7 @@ void MainWindow::on_searchButton_clicked()
                ui->tableWidget->insertRow ( ui->tableWidget->rowCount() );
                ui->tableWidget->setItem   ( ui->tableWidget->rowCount()-1, 0, new QTableWidgetItem(in.readLine()));
                ui->tableWidget->setItem   ( ui->tableWidget->rowCount()-1, 1, new QTableWidgetItem(in.readLine()));
-               if(movietv == "movie")
+               if(movietv == "m")
                    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem("Movie"));
                else
                    ui->tableWidget->setItem(ui->tableWidget->rowCount()-1, 2, new QTableWidgetItem("Series"));
