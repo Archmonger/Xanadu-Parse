@@ -10,6 +10,10 @@ def isEnglish(s):
         return True
 
 def standardize_title(title):
+    title = title.replace("\""," ") # Remove quotation marks
+    title = title.replace("|"," ") # Remove our delimiter symbol from the strings
+    title = title.replace("~","-") # Replace ~ with -
+
     if title.count(' ') <= 2 or title.count('.') >= 3 or title.count('_') >= 3:
         # Standardize periods to spaces
         if (title.count('.') > 1 and title.count('.') > title.count('_')): 
@@ -36,7 +40,8 @@ def standardize_title(title):
     for match in d.finditer(title):
         title = title[:match.start()+1] + "." + title[match.start()+2:]
 
-    title = title.replace("\"","") # Remove quotation marks
+    title = title.replace("   "," ") # Remove triple spaces if they exist    
+    title = title.replace("  "," ") # Remove double spaces if they exist
 
     if isEnglish(title):
         return title

@@ -10,6 +10,10 @@ def isEnglish(s):
         return True
 
 def standardize_title(title):
+    title = title.replace("\""," ") # Remove quotation marks
+    title = title.replace("|"," ") # Remove our delimiter symbol from the strings
+    title = title.replace("~","-") # Replace ~ with -
+
     if title.count(' ') <= 2 or title.count('.') >= 3 or title.count('_') >= 3:
         # Standardize periods to spaces
         if (title.count('.') > 1 and title.count('.') > title.count('_')): 
@@ -22,10 +26,10 @@ def standardize_title(title):
         elif (title.count('_') > 0): 
             title = title.replace("_", " ")
 
-    #Minor revisions to filename
-    a = re.compile(r"\s*$") # remove trailing whitespace
-    b = re.compile(r"\S \(Torrent\) - \S") # remove " (Torrent) - Uploader"
-    c = re.compile(r" torrent$") # remove " torrent"        
+    # Clean up the file name
+    a = re.compile(r"\s*$") # rRmove trailing whitespace
+    b = re.compile(r"\S \(Torrent\) - \S") # Remove " (Torrent) - Uploader"
+    c = re.compile(r" torrent$") # Remove " torrent"        
     d = re.compile(r"\S (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv)$") # " mp4" -> .mp4
     for match in a.finditer(title):
         title = title[:match.start()]
@@ -35,6 +39,9 @@ def standardize_title(title):
         title = title[:match.start()]
     for match in d.finditer(title):
         title = title[:match.start()+1] + "." + title[match.start()+2:]
+
+    title = title.replace("   "," ") # Remove triple spaces if they exist    
+    title = title.replace("  "," ") # Remove double spaces if they exist
 
     if isEnglish(title):
         return title
