@@ -131,11 +131,11 @@ void MainWindow::on_saveButton_clicked()
                         if(node2)
                         {
                             QString str = node2->text();
-                            if(str.contains("|"))
+                            if(str.contains('|'))
                             {
                                 //replace spaces with |
-                                str.push_back("\"");
-                                str.push_front("\"");
+                                str.push_back('\"');
+                                str.push_front('\"');
                             }
                             stream << str;
                         }
