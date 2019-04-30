@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setHorizontalHeaderItem(19, new QTableWidgetItem("File Type"));
     ui->tableWidget->setHorizontalHeaderItem(20, new QTableWidgetItem("Checksum"));
 
+    ui->tableWidget->setEditTriggers(QAbstractItemView::AllEditTriggers);
 }
 
 MainWindow::~MainWindow()
@@ -115,8 +116,11 @@ void MainWindow::on_saveButton_clicked()
                     QTableWidgetItem* node = ui->tableWidget->item(i, j);
                     if(node)
                     {
-                        qInfo( qPrintable( node->text() ));
-                        write = true;
+                        if(node->text().size() > 0)
+                        {
+                            qInfo( qPrintable( node->text() ));
+                            write = true;
+                        }
                     }
                 }
 
