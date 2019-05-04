@@ -30,7 +30,7 @@ def standardize_title(title):
     a = re.compile(r"\s*$") # rRmove trailing whitespace
     b = re.compile(r"\S \(Torrent\) - \S") # Remove " (Torrent) - Uploader"
     c = re.compile(r" torrent$") # Remove " torrent"        
-    d = re.compile(r"\S (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv)$") # " mp4" -> .mp4
+    d = re.compile(r"\S (mkv|mp4|m4p|m4v|mpg|mp2|mpeg|mpe|mpv|svi|divx|flv|f4v|f4p|f4a|f4b|avi|wmv|mov|webm|vob|yuv|xvid)$") # " mp4" -> .mp4
     for match in a.finditer(title):
         title = title[:match.start()]
     for match in b.finditer(title):
