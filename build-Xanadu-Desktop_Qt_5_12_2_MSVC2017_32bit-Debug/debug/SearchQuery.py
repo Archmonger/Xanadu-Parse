@@ -59,7 +59,7 @@ def contentSearch():
 
             # If an issue was detected, report it to console.
             else:
-                print(">>> Rejected Start <<< ")
+                print(">>> Rejected <<< ")
                 if title is not None:
                     print("Title: " + title)
                 else:
@@ -75,7 +75,7 @@ def contentSearch():
                 if "tags" not in post:
                     print("Post contains no category tags.")            
 
-                print(">>> Rejected End <<<")
+                print("")
 
         # Save titles to file
         results_file = open("results.txt","w+")
