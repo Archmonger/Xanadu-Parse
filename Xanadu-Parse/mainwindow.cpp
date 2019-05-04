@@ -13,6 +13,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->tableWidget->setColumnCount(21);
     // initialize number of rows
     ui->tableWidget->setRowCount(0);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+
     // create table headers
     ui->tableWidget->setHorizontalHeaderItem(0, new QTableWidgetItem("Altered File Name"));
     ui->tableWidget->setHorizontalHeaderItem(1, new QTableWidgetItem("Unaltered File Name"));
