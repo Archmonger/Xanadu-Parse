@@ -7,7 +7,7 @@ from Standardize import standardize_title
 
 
 def contentSearch():
-    search_dict = {}
+    search_results = {}
     
     # Manual interface
     if len(sys.argv) != 3:
@@ -42,21 +42,44 @@ def contentSearch():
         # Parsing the contents of the request (RSS feed) into human-readable format using feedparser
         rss = feedparser.parse(response.content)
 
-        # Ensure no duplication
+        # Ensure no duplication, and validate category.
         csv_reader = csv.DictReader(open('AITestFile.csv'), delimiter='|', quotechar='"')  
         parse_history = []
         for row in csv_reader:
             parse_history.append(row['Altered File Name'])
         for post in rss.entries:
             title = standardize_title(post.title)
-            if title is not None and title not in search_dict and title not in parse_history:
-                search_dict[title] = post.title
+            if title is not None and title not in search_results and title not in parse_history and "tags" in post:
+                search_results[title] = post.title
+                #print(title)
+                #print(post.jackettindexer["id"])
+                #for tags in post.tags:
+                #    print(tags.term + " ", end='')
+                #print()
 
-        # Print all titles
+            # If an issue was detected, report it to console.
+            else:
+                print(">>> Rejected Start <<< ")
+                if title is not None:
+                    print("Title: " + title)
+                else:
+                    print("Title: " + post.title)
+                print("Indexer: " + post.jackettindexer["id"])
+
+                if title is None:
+                    print("Title uses non-ACSII characters.")
+                if title in search_results:
+                    print("Standardized title is already in search results.")
+                if title in parse_history:
+                    print("Standardized title is already in parse history.")
+                if "tags" not in post:
+                    print("Post contains no category tags.")            
+
+                print(">>> Rejected End <<<")
+
+        # Save titles to file
         results_file = open("results.txt","w+")
-        for std_title, title in search_dict.items():
-            print(std_title)
-            print(title)
+        for std_title, title in search_results.items():
             print(std_title, file=results_file)
             print(title, file=results_file)
 
