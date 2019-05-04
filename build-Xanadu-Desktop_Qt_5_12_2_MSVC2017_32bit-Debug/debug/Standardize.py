@@ -43,6 +43,9 @@ def standardize_title(title):
     title = title.replace("   "," ") # Remove triple spaces if they exist    
     title = title.replace("  "," ") # Remove double spaces if they exist
 
+    if title.len < 4:
+        return None;
+
     if isEnglish(title):
         return title
     else:

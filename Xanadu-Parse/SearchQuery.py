@@ -67,7 +67,7 @@ def contentSearch():
                 print("Indexer: " + post.jackettindexer["id"])
 
                 if title is None:
-                    print("Title uses non-ACSII characters.")
+                    print("Title uses non-ACSII characters, or is too short.")
                 if title in search_results:
                     print("Standardized title is already in search results.")
                 if title in parse_history:
