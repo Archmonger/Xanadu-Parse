@@ -19,7 +19,7 @@ test_output = test[['Title','Season','Episode','Resolution']]
 # Build the model: a single LSTM
 model = Sequential()
 model.add(LSTM(128, input_shape=(train_input['Altered File Name'].count(), 2), return_sequences=True))
-#model.add(Dense(128, activation='softmax'))
+model.add(Dense(128, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer=RMSprop(lr=0.01))
 
 model.fit(train_input.values, train_output.values)
