@@ -27,7 +27,9 @@
     </Compile>
     <Compile Include="SearchQuery.py" />
     <Compile Include="Standardize.py" />
-    <Compile Include="Xanadu_Parse.py" />
+    <Compile Include="XanaduParse.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.cpp" />
