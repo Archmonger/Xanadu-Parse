@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>5ebba34f-2a4e-4ab1-9a1a-2881aaf6c9fd</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>SearchQuery.py</StartupFile>
+    <StartupFile>XanaduParse.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
