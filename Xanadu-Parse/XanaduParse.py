@@ -5,11 +5,6 @@ from keras.layers import Flatten
 from keras.optimizers import RMSprop
 import pandas as pd 
 import numpy as np
-#from keras_pandas.Automater import Automater
-
-#data_type_dict = {'text':['Altered File Name','Content Type','Title','Season','Episode','Resolution']}
-input_vars = {'text':['Altered File Name','Content Type']}
-output_vars = {'text':['Title','Season','Episode','Resolution']}
 
 # Training dataset
 train = pd.read_csv(r'c:\users\markg\downloads\repositories\xanadu-parse\xanadu-parse\train.csv', sep='|')
@@ -33,8 +28,8 @@ train_output = train_output.values.reshape(1,line_count,4)
 
 # Build the model: a single LSTM
 model = Sequential()
-model.add(LSTM(128, input_shape=(line_count, 2), return_sequences=True))
-model.add(Dense(128, activation='softmax'))
+model.add(LSTM(128, input_shape=(line_count,2), return_sequences=True))
+#model.add(Dense(128, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer=RMSprop(lr=0.01))
 
 model.fit(train_input, train_output)
