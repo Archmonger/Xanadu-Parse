@@ -5,15 +5,26 @@ from keras.layers import Flatten
 from keras.optimizers import RMSprop
 import pandas as pd 
 import numpy as np
+#from keras_pandas.Automater import Automater
 
-data_type_dict = {'text':['altered file name','content type','altered file name','content type']}
-output_vars = ['title','season','episode','resolution']
+#data_type_dict = {'text':['Altered File Name','Content Type','Title','Season','Episode','Resolution']}
+input_vars = {'text':['Altered File Name','Content Type']}
+output_vars = {'text':['Title','Season','Episode','Resolution']}
 
 # Training dataset
 train = pd.read_csv(r'c:\users\markg\downloads\repositories\xanadu-parse\xanadu-parse\train.csv', sep='|')
-train_input = train[['altered file name','content type']]
-train_output = train[['title','season','episode','resolution']]
-line_count = train_input['altered file name'].count()
+train_input = train[['Altered File Name','Content Type']]
+train_output = train[['Title','Season','Episode','Resolution']]
+line_count = train_input['Altered File Name'].count()
+train_input = train_input.values.reshape(1,line_count,2)
+train_output = train_output.values.reshape(1,line_count,4)
+
+#automater_inputs = Automater(data_type_dict=input_vars, output_var=None)
+#automater_outputs = Automater(data_type_dict=output_vars, output_var=None)
+#automater_inputs.fit(train_input)
+#automater_outputs.fit(train_output)
+#x = automater_inputs.transform(train_input)
+#y = automater_outputs.transform(train_output)
 
 ## Testing dataset
 #test = pd.read_csv(r"C:\Users\Markg\Downloads\Repositories\Xanadu-Parse\Xanadu-Parse\test.csv", sep='|')
@@ -26,4 +37,4 @@ model.add(LSTM(128, input_shape=(line_count, 2), return_sequences=True))
 model.add(Dense(128, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer=RMSprop(lr=0.01))
 
-model.fit(train_input.values, train_output.values)
+model.fit(train_input, train_output)
