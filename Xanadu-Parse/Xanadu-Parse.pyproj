@@ -30,6 +30,9 @@
     <Compile Include="XanaduParse.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="XanaduParse2.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="main.cpp" />
