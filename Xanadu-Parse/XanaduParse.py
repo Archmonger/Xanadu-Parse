@@ -1,7 +1,7 @@
 # Training dataset
 import pandas as pd 
 import numpy as np
-train = pd.read_csv(r'c:\users\markg\downloads\repositories\xanadu-parse\xanadu-parse\train.csv', sep='|')
+train = pd.read_csv(r'train.csv', sep='|')
 train_input = train[['Altered File Name','Content Type']]
 train_output = train['Resolution']
 row_count = train['Altered File Name'].count()
