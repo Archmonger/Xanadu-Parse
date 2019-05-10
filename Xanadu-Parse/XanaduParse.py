@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 train = pd.read_csv(r'c:\users\markg\downloads\repositories\xanadu-parse\xanadu-parse\train.csv', sep='|')
 train_input = train[['Altered File Name','Content Type']]
-train_output = train[['Resolution']]
+train_output = train['Resolution']
 row_count = train['Altered File Name'].count()
 
 # Transform text to word sequences
@@ -42,4 +42,5 @@ model.add(LSTM(input_column_count, input_shape=(row_count,input_column_count), r
 model.add(LSTM(128, return_sequences=True))
 model.add(Dense(10, activation='softmax'))
 model.compile(loss='categorical_crossentropy', optimizer=RMSprop(lr=0.01))
-model.fit(x=train_input, y=train_output, verbose=1, epochs=20)
+model.fit(x=train_input, y=train_output, verbose=1, epochs=10)
+model.evaluate(x=train_input, y=train_output)
